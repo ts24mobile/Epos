@@ -1,5 +1,7 @@
 {
   "name": "Epos",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

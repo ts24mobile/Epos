@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lịch Sử</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="onRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-list no-lines>
+    <div *ngFor="let ticket of ticket_list">
+      <ion-item lines="none">
+        <ion-label position="fixed">Mã vé</ion-label>
+        <ion-label>{{ticket.ticket_id}}</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="fixed">Khách hàng:</ion-label>
+        <ion-label>{{ticket.ticket_customer}}</ion-label>
+      </ion-item>
+      <ion-item lines="none">
+        <ion-label position="fixed">Loại vé:</ion-label>
+        <ion-label>{{ticket.ticket_type}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Đơn giá:</ion-label>
+        <ion-label>{{ticket.ticket_price | currency: 'VND': 'symbol' : '3.0'}}</ion-label>
+      </ion-item>
+    </div>
+  </ion-list>
+</ion-content>

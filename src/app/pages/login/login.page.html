@@ -1,0 +1,32 @@
+<ion-content>
+  <ion-item lines="none">
+    <ion-label>Công ty</ion-label>
+    <ion-select placeholder="Công ty">
+      <ion-select-option value="d">Đầm Sen</ion-select-option>
+      <ion-select-option value="s">Suối Tiên</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <form #form="ngForm" (ngSubmit)="login()">
+    <div>
+      <ion-row>
+        <ion-col>
+          <ion-list mode="ios" inset class="no-border">
+            <ion-item>
+              <ion-label>Email</ion-label>
+              <ion-input [(ngModel)]="formLogin.username" type="text" name="username"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>Mật Khẩu</ion-label>
+              <ion-input [(ngModel)]="formLogin.password" type="password" name="password"></ion-input>
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button mode="md" shape="round" expand="full" type="submit">Đăng Nhập</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </form>
+</ion-content>
