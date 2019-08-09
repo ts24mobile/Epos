@@ -24,7 +24,7 @@ export class HomePage implements OnInit {
   scanTicket: any = [];
 
   ticket_control: any = {
-    "ticket_id": Math.floor(Math.random() * 20) + 1,
+    "ticket_id": 'FC' + this.genRandomNumberString(10, "num"),
     "ticket_customer": "Nguyễn Văn A",
     "ticket_price": "200000",
     "ticket_type": "Vé người lớn",
@@ -34,7 +34,7 @@ export class HomePage implements OnInit {
   }
 
   ticket_info: any = {
-    "ticket_id": Math.floor(Math.random() * 20) + 1,
+    "ticket_id": 'FC' + this.genRandomNumberString(10, "num"),
     "ticket_customer": "",
     "ticket_customer_phone": "",
     "ticket_price": "200000",
@@ -89,7 +89,7 @@ export class HomePage implements OnInit {
 
 
     this.ticket_info = {
-      "ticket_id": Math.floor(Math.random() * 20) + 1,
+      "ticket_id": 'FC' + this.genRandomNumberString(10, "num"),
       "ticket_customer": "",
       "ticket_customer_phone": "",
       "ticket_price": "200000",
@@ -115,6 +115,7 @@ export class HomePage implements OnInit {
       .then(barcodeData => {
         // console.log("Barcode data " + JSON.stringify(barcodeData));
         // this.scannedData = barcodeData;
+        this.ticket_control.ticket_state = "Chưa xác nhận";
         this.iShowInfo = true;
         console.log(barcodeData);
         let ticket = JSON.parse(barcodeData.text);
@@ -129,22 +130,44 @@ export class HomePage implements OnInit {
         console.log("Error", err);
       });
   }
-//   changeFormatMoney(e){
-//     this.ticket_info.ticket_total = parseInt(e.target.value.toString().replace(/[,\.]/gi, ''));
-//     e.target.value = this.formatMoney(this.ticket_info.ticket_total);
-//   }
+  genRandomNumberString(numberRan, type?: any) {
+    numberRan = numberRan || 5;
+    type = type || 'all';
+    var text = "", possible = "";
+    switch (type) {
+      case 'all':
+        possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        break;
+      case 'num':
+        possible = "0123456789";
+        break;
+      case 'str':
+        possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+        break;
+    }
 
-//   formatMoney(number, places?: any, symbol?: any, thousand?: any, decimal?: any) {
-//     number = number || 0;
-//     if (number == null) number = 0;
-//     places = !isNaN(places = Math.abs(places)) ? places : 0;
-//     symbol = symbol !== undefined ? symbol : " VND";
-//     thousand = thousand || ".";
-//     decimal = decimal || ",";
-//     var negative = number < 0 ? "-" : "",
-//         i: any = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
-//         j = (j = i.length) > 3 ? j % 3 : 0;
-//     return negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
-// }
+    for (var i = 0; i < numberRan; i++)
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+  }
+  //   changeFormatMoney(e){
+  //     this.ticket_info.ticket_total = parseInt(e.target.value.toString().replace(/[,\.]/gi, ''));
+  //     e.target.value = this.formatMoney(this.ticket_info.ticket_total);
+  //   }
+
+  //   formatMoney(number, places?: any, symbol?: any, thousand?: any, decimal?: any) {
+  //     number = number || 0;
+  //     if (number == null) number = 0;
+  //     places = !isNaN(places = Math.abs(places)) ? places : 0;
+  //     symbol = symbol !== undefined ? symbol : " VND";
+  //     thousand = thousand || ".";
+  //     decimal = decimal || ",";
+  //     var negative = number < 0 ? "-" : "",
+  //         i: any = parseInt(number = Math.abs(+number || 0).toFixed(places), 10) + "",
+  //         j = (j = i.length) > 3 ? j % 3 : 0;
+  //     return negative + (j ? i.substr(0, j) + thousand : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thousand) + (places ? decimal + Math.abs(number - i).toFixed(places).slice(2) : "");
+  // }
+
 
 }

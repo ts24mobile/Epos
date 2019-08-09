@@ -7,11 +7,11 @@ import { IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MODULES, PROVIDERS } from './app.imports';
-
+import { PipesModule } from './pipes/pipes.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [MODULES, AppRoutingModule],
+  imports: [MODULES, AppRoutingModule, PipesModule],
   providers: [
     PROVIDERS,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
